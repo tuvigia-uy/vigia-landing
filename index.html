@@ -132,19 +132,70 @@ footer {
 .supported { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 
 @media (max-width: 768px) { nav { padding: 0 20px; } }
+
+.hero { position: relative; overflow: hidden; min-height: 82vh; }
+.hero > * { position: relative; z-index: 1; }
+.hero h1 { opacity: 0; transform: translateY(18px); animation: rise .9s .1s ease forwards; }
+.hero .btn { opacity: 0; animation: rise .9s .45s ease forwards; box-shadow: 0 0 0 0 rgba(0,180,216,.5); }
+.hero .btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,180,216,.35); }
+.hero .btn { animation: rise .9s .45s ease forwards, ring 2.8s 1.5s infinite; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(0,180,216,.45); } 70%,100% { box-shadow: 0 0 0 18px rgba(0,180,216,0); } }
+h1 span {
+  background: linear-gradient(90deg, #00B4D8, #7C6CF0, #00B4D8); background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 5s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+.orb { position: absolute !important; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0 !important; }
+.o1 { width: 340px; height: 340px; background: rgba(0,180,216,.18); top: 8%; left: 8%; animation: float 12s ease-in-out infinite; }
+.o2 { width: 380px; height: 380px; background: rgba(124,108,240,.16); bottom: 4%; right: 6%; animation: float 15s ease-in-out infinite reverse; }
+@keyframes float { 50% { transform: translate(40px, -30px) scale(1.12); } }
+
+.news { padding: 40px 0 96px; }
+.news-head { text-align: center; padding: 0 24px; margin-bottom: 40px; }
+.news-head h2 { margin-bottom: 0; }
+.news-head .chip { display: inline-flex; align-items: center; gap: 8px; }
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.track { display: flex; gap: 16px; width: max-content; padding: 4px 0; animation: scroll 60s linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+@keyframes scroll { to { transform: translateX(calc(-50% - 8px)); } }
+.ncard {
+  width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+  text-decoration: none; color: var(--t1); transition: border-color .2s, transform .2s;
+}
+.ncard:hover { border-color: var(--c-bord); transform: translateY(-4px); }
+.nmeta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.nmeta b { color: var(--cyan); } .nmeta i { color: var(--t3); font-style: normal; }
+.ncard h3 { font-size: 16px; line-height: 1.4; }
+.ncard p { font-size: 13px; color: var(--t2); line-height: 1.6; }
+.nmore { margin-top: auto; font-size: 12px; font-weight: 600; color: var(--cyan); }
+@media (max-width: 768px) { .ncard { width: 280px; } }
+@media (prefers-reduced-motion: reduce) {
+  .track, .orb, h1 span, .hero .btn { animation: none; }
+  .hero h1, .hero .btn { opacity: 1; transform: none; }
+  .marquee { overflow-x: auto; }
+}
 </style>
 </head>
 <body>
 
 <nav>
   <img src="img/vigia-isotipo.png" alt="Vigía" style="height:28px;width:auto;display:block;">
-  <a href="mailto:hola@tuvigia.uy" class="nav-cta">Contacto</a>
 </nav>
 
 <section class="hero">
+  <div class="orb o1"></div><div class="orb o2"></div>
   <h1>Está llegando una nueva forma de detectar el <span>fraude telefónico</span>.</h1>
-  <img src="img/vigia-logo.png" alt="Vigía — Inteligencia Preventiva" class="logo">
   <a href="mailto:hola@tuvigia.uy" class="btn">¿Te gustaría saber más?</a>
+</section>
+
+<section class="news">
+  <div class="news-head">
+    <div class="chip"><span class="dot"></span>Últimas noticias</div>
+  </div>
+  <div class="marquee"><div class="track" id="track"></div></div>
 </section>
 
 <footer>
@@ -153,5 +204,27 @@ footer {
   <span>© 2026 Vigía · Uruguay</span>
 </footer>
 
+<script>
+const FALLBACK = [
+  {title:"Hombre de 90 años cayó con el cuento del tío en Fray Bentos y sacó un préstamo para pagarle a su falso nieto",link:"https://www.elpais.com.uy/informacion/policiales/hombre-de-90-anos-cayo-con-el-cuento-del-tio-en-fray-bentos-y-saco-un-prestamo-para-pagarle-a-su-falso-nieto",description:"Caso de estafa en Fray Bentos con un supuesto nieto que pidió dinero para un supuesto problema.",source:"El País",published_at:"2026-05-28"},
+  {title:"Estafas telefónicas: nuevos casos llaman la atención por altas sumas y perfil de víctima",link:"https://www.montevideo.com.uy/Noticias/Estafas-telefonicas-nuevos-casos-llaman-la-atencion-por-altas-sumas-y-perfil-de-victima-uc965550",description:"Reportaje sobre estafas telefónicas con montos elevados y víctimas con perfiles específicos.",source:"Montevideo Portal",published_at:"2026-06-18"},
+  {title:"Nuevo caso del cuento del tío en Montevideo: una mujer entregó $1.500.000 y US$50.000 a delincuentes",link:"https://www.subrayado.com.uy/nuevo-caso-del-cuento-del-tio-montevideo-una-mujer-entrego-1500000-pesos-y-50000-dolares-delincuentes-n1010644",description:"Nuevo caso de estafa por el conocido “cuento del tío” en Montevideo.",source:"Subrayado",published_at:"2026-06-17"}
+];
+const esc = t => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safe = u => /^https?:\/\//.test(u) ? u : '#';
+function fmt(d){ const x = new Date(d); return isNaN(x) ? '' : x.toLocaleDateString('es-UY',{day:'numeric',month:'short'}); }
+function render(items){
+  if(!items.length) return;
+  const card = n => `<a class="ncard" href="${esc(safe(n.link))}" target="_blank" rel="noopener noreferrer">
+    <div class="nmeta"><b>${esc(n.source)}</b><i>${fmt(n.published_at)}</i></div>
+    <h3>${esc(n.title)}</h3><p>${esc(n.description)}</p><span class="nmore">Leer nota →</span></a>`;
+  const reps = Math.max(1, Math.ceil(6 / items.length));
+  const half = Array.from({length: reps}, () => items.map(card).join('')).join('');
+  document.getElementById('track').innerHTML = half + half;
+}
+render(FALLBACK);
+fetch('news.json', {cache:'no-cache'}).then(r => r.ok ? r.json() : Promise.reject())
+  .then(d => { if(Array.isArray(d.items) && d.items.length) render(d.items); }).catch(() => {});
+</script>
 </body>
 </html>
