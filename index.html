@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="only light">
 <meta name="supported-color-schemes" content="light">
 <title>Unvish</title>
-<meta name="description" content="Unvish es una plataforma B2B que detecta el fraude telefónico analizando lo que se dice en la llamada y entrega un nivel de riesgo con sus razones, en tiempo real.">
+<meta name="description" content="Unvish es una empresa uruguaya que desarrolla inteligencia artificial propia para detectar fraude telefónico: entrega un nivel de riesgo con sus razones, en tiempo real.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@ body { font-family: 'Instrument Sans', system-ui, sans-serif; background: var(--
 a { color: inherit; text-decoration: none; }
 .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
 section { padding-block: 104px; position: relative; }
-h1, h2, h3 { line-height: 1.1; letter-spacing: -.02em; font-weight: 600; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.1; letter-spacing: -.02em; font-weight: 600; }
 h2 { font-size: clamp(32px, 4.6vw, 52px); max-width: 760px; margin-bottom: 22px; }
 .kicker { font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--teal-ink); margin-bottom: 18px; }
 .lead { color: var(--ink-2); max-width: 640px; }
@@ -80,11 +80,30 @@ nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(24
 
 /* Presentación */
 .intro { padding-block: 104px; }
-.about p { font-size: clamp(22px, 2.9vw, 34px); font-weight: 500; line-height: 1.4; letter-spacing: -.015em; color: var(--navy); max-width: 900px; }
-.about p + p { margin-top: 24px; }
+.about p { font-size: clamp(20px, 2.4vw, 28px); font-weight: 500; line-height: 1.45; letter-spacing: -.012em; color: var(--navy); max-width: 900px; }
+.about p + p { margin-top: 22px; }
+
+/* Tecnología propia */
+.tech { background: #fff; }
+.pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 48px; }
+.pillars article { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 28px; }
+.pillars h3 { font-size: 20px; margin-bottom: 8px; }
+.pillars p { color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+
+/* Integración */
+.integ { padding-block: 96px; }
+.flow { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 48px; }
+.flow li { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 24px 20px; }
+.flow li:not(:last-child)::after { content: ""; position: absolute; top: 50%; right: -16px; width: 16px; height: 2px; background: var(--slate); }
+.flow h3 { font-size: 17px; margin-bottom: 8px; }
+.flow p { font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.flow li.us { background: var(--navy); border-color: var(--navy); }
+.flow li.us h3 { color: var(--paper); }
+.flow li.us p { color: var(--on-dark-2); }
+.code.integ-code { max-width: 760px; margin: 40px auto 0; background: var(--navy); }
+.code { background: rgba(0,0,0,.28); border: 1px solid var(--line-dark); border-radius: 20px; overflow: hidden; }
 
 /* La solución */
-.how { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; margin-top: 56px; }
 .sol { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: 32px; margin-top: 48px; align-items: stretch; }
 .tabs { display: flex; flex-direction: column; gap: 6px; }
 .tabs button { font: inherit; font-size: 16px; font-weight: 500; text-align: left; padding: 16px 20px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--on-dark-2); cursor: pointer; }
@@ -95,11 +114,6 @@ nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(24
 .feat { height: 100%; background: rgba(243,245,247,.05); border: 1px solid var(--line-dark); border-radius: 24px; padding: clamp(28px, 5vw, 56px); min-height: 240px; display: flex; align-items: center; }
 .feat[hidden] { display: none; }
 .feat p { font-size: clamp(22px, 2.8vw, 32px); font-weight: 500; line-height: 1.4; letter-spacing: -.01em; max-width: 640px; }
-.outs-end { font-size: clamp(20px, 2.4vw, 28px); font-weight: 500; line-height: 1.45; letter-spacing: -.01em; color: var(--navy); align-self: center; }
-.resp { padding-block: 96px; }
-.resp .how { margin-top: 0; }
-.resp .code { background: var(--navy); }
-.code { background: rgba(0,0,0,.28); border: 1px solid var(--line-dark); border-radius: 20px; overflow: hidden; }
 .code-bar { display: flex; gap: 7px; padding: 14px 18px; border-bottom: 1px solid var(--line-dark); }
 .code-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(243,245,247,.2); }
 .code pre { padding: 24px; overflow-x: auto; font-family: ui-monospace, 'JetBrains Mono', Consolas, monospace; font-size: 14px; line-height: 1.8; color: var(--paper); }
@@ -108,7 +122,10 @@ nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(24
 .code .s { color: var(--paper); }
 .code .risk { color: var(--red); }
 .code .warn { color: var(--amber); }
+.code-bar { align-items: center; }
+.code-bar span { margin-left: 10px; font-family: ui-monospace, 'JetBrains Mono', Consolas, monospace; font-size: 12px; color: var(--on-dark-2); }
 .code-bar small { margin-left: auto; font-size: 12px; color: var(--on-dark-2); }
+.code .n { color: var(--amber); }
 
 /* Prueba: Unvish Guard */
 .try { background: #fff; }
@@ -118,6 +135,7 @@ nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(24
 .try-copy .lead { margin-bottom: 16px; max-width: 560px; }
 .try-copy .lead strong { color: var(--navy); font-weight: 600; }
 .try-copy .btn { margin-top: 16px; }
+.try-copy .fine { margin-top: 22px; max-width: 560px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
 .try-demo { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .try-demo figcaption { font-size: 13px; color: var(--ink-2); }
 .phone { width: 286px; height: 580px; padding: 11px; border-radius: 46px; background: #0b1320; box-shadow: 0 30px 70px rgba(16,28,44,.28), inset 0 0 0 2px #22344d; position: relative; }
@@ -186,8 +204,9 @@ nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(24
 /* Contacto */
 .cta { text-align: center; padding-top: 0; }
 .cta-box { border-radius: 36px; padding: 88px 24px; }
-.cta h2 { margin-inline: auto; }
-.cta .lead { margin: 0 auto 36px; }
+.cta h2 { margin-inline: auto; max-width: 880px; font-size: clamp(28px, 4vw, 44px); text-wrap: balance; }
+.cta .lead { margin: 0 auto 36px; max-width: 720px; text-wrap: balance; }
+.icon-btn .lbl { display: none; }
 .cta .ctas { display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
 
 /* Footer */
@@ -208,8 +227,21 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   .intro { padding-top: 64px; }
       .sol { grid-template-columns: 1fr; }
   .feat { min-height: 180px; }
-  .how { grid-template-columns: 1fr; gap: 36px; }
+    .flow { grid-template-columns: 1fr; gap: 22px; }
+  .flow li:not(:last-child)::after { top: auto; bottom: -22px; right: auto; left: 32px; width: 2px; height: 22px; }
   .try-grid { grid-template-columns: 1fr; gap: 48px; }
+  .team { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 32px; }
+  .person { position: relative; padding: 16px; border-radius: 18px; }
+  .person h3 { font-size: 15px; line-height: 1.25; padding-right: 34px; }
+  .person p { font-size: 13px; min-height: 0; }
+  .person a.in { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; margin-top: 0; }
+  .person a.in svg { width: 16px; height: 16px; }
+  .sub { margin-top: 48px; font-size: 22px; }
+  .sub-lead + .team { margin-top: 20px; }
+  .cta .ctas { flex-direction: column; align-items: stretch; max-width: 340px; margin-inline: auto; gap: 12px; }
+  .cta .ctas .btn { justify-content: center; }
+  .cta .icon-btn { width: auto; height: 54px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 12px; padding-inline: 24px; font-size: 14px; font-weight: 600; }
+  .cta .icon-btn .lbl { display: inline; }
       .foot { grid-template-columns: 1fr 1fr; }
   .foot > :first-child { grid-column: 1 / -1; }
   .hacker-img { width: 100%; opacity: .45; }
@@ -241,8 +273,20 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   <div class="wrap">
     <div class="kicker">Qué es Unvish</div>
     <div class="about">
-      <p>Unvish es una plataforma B2B con la misión de cambiar el panorama actual de las estafas por teléfono (vishing).</p>
-      <p>Nuestro enfoque se centra en brindar a operadores de telecomunicaciones una herramienta que suma valor a su servicio y cuida a sus abonados.</p>
+      <p>Unvish es una empresa uruguaya de tecnología especializada en la detección de fraude e ingeniería social en comunicaciones (vishing).</p>
+      <p>Nuestros modelos permiten analizar el contenido de una conversación, identificar señales asociadas a posibles intentos de fraude y generar una evaluación de riesgo estructurada.</p>
+      <p>Trabajamos con operadores de telecomunicaciones y organizaciones que buscan incorporar capacidades avanzadas de detección sin tener que desarrollar sus propios motores de inteligencia antifraude.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tecnologia" class="tech">
+  <div class="wrap">
+    <div class="kicker">NUESTRO DIFERENCIAL</div>
+    <h2>Tecnología pensada <span class="hl">para la región.</span></h2>
+    <div class="pillars">
+      <article><h3>Desarrollo propio</h3><p>Modelos, clasificación y motor de análisis desarrollados por nuestro equipo, con evolución propia.</p></article>
+      <article><h3>Lenguaje y modalidades locales</h3><p>Atención a las particularidades lingüísticas y modalidades de fraude latinoamericanas.</p></article>
     </div>
   </div>
 </section>
@@ -251,7 +295,7 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   <div class="wrap">
     <div class="kicker">La solución</div>
     <h2>Una lectura clara de <span class="hl">cada conversación.</span></h2>
-    <p class="lead">Nuestros motores first party entrenados con IA evalúan la intención de una conversación y la comparan con los patrones de fraudes telefónicos utilizados en la región.</p>
+    <p class="lead">Unvish evalúa la intención y el contexto de cada conversación, más allá de palabras o frases puntuales.</p>
     <div class="sol">
       <div class="tabs" role="tablist" id="featTabs" aria-label="Qué entrega la solución">
         <button role="tab" aria-selected="true">Nivel de riesgo</button>
@@ -269,23 +313,35 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   </div>
 </section>
 
-<section id="respuesta" class="resp">
+<section id="integracion" class="integ">
   <div class="wrap">
-    <div class="how">
-      <p class="outs-end">Usted define la respuesta: alertar al cliente, derivar a un analista, registrar el caso o bloquear, según sus políticas.</p>
-      <div class="code">
-        <div class="code-bar"><i></i><i></i><i></i><small>Ejemplo ilustrativo</small></div>
+    <div class="kicker">Cómo se integra</div>
+    <h2>Inteligencia que se adapta a <span class="hl">su infraestructura.</span></h2>
+    <ol class="flow">
+      <li><h3>Comunicación</h3><p>Una llamada o conversación gestionada por la organización.</p></li>
+      <li><h3>Captura y transcripción</h3><p>La conversación se convierte en texto, con la infraestructura del cliente o con un proveedor, según la arquitectura de la integración.</p></li>
+      <li class="us"><h3>Unvish AI</h3><p>Análisis contextual y evaluación del riesgo.</p></li>
+      <li class="us"><h3>API de resultados</h3><p>Riesgo, clasificación e indicadores detectados.</p></li>
+      <li><h3>Sistemas del cliente</h3><p>La organización define las acciones según sus políticas: alertar al cliente, derivar a un analista, registrar el caso o bloquear.</p></li>
+    </ol>
+    <div class="code integ-code">
+      <div class="code-bar"><i></i><i></i><i></i><span>response.json</span><small>API de resultados · Ejemplo ilustrativo</small></div>
 <pre><code>{
-  <b class="k">"risk_score"</b>: <b class="risk">0.93</b>,
-  <b class="k">"category"</b>: <b class="s">"suplantación de entidad bancaria"</b>,
+  <b class="k">"conversation_id"</b>: <b class="s">"c_7f3a9e"</b>,
+  <b class="k">"risk"</b>: {
+    <b class="k">"score"</b>: <b class="risk">0.93</b>,
+    <b class="k">"level"</b>: <b class="risk">"high"</b>,
+    <b class="k">"confidence"</b>: <b class="n">0.91</b>
+  },
+  <b class="k">"classification"</b>: {
+    <b class="k">"category"</b>: <b class="s">"bank_impersonation"</b>
+  },
   <b class="k">"signals"</b>: [
-    <b class="warn">"solicita código de verificación"</b>,
-    <b class="warn">"urgencia"</b>,
-    <b class="warn">"pide mantener la llamada"</b>
-  ],
-  <b class="k">"confidence"</b>: <b class="s">"alta"</b>
+    <b class="warn">"verification_code_request"</b>,
+    <b class="warn">"urgency"</b>,
+    <b class="warn">"keep_on_line_request"</b>
+  ]
 }</code></pre>
-      </div>
     </div>
   </div>
 </section>
@@ -295,11 +351,10 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
     <div class="try-copy">
       <img class="try-logo" src="img/unvishGuard-web.svg" alt="Unvish Guard">
       <span class="badge">DEMO</span>
-      <h2>Pruebe el motor en una <span class="hl">llamada real.</span></h2>
-      <p class="lead"><strong>Unvish Guard</strong> es una aplicación móvil de demostración que incorpora el motor de Unvish a sus llamadas. Indica, en tiempo real, si se detecta una maniobra de fraude y en qué se basa esa detección.</p>
-      <p class="lead">Su único fin es probar el motor: no es un producto de protección para el público.</p>
-      <p class="lead">Para solicitar la demo o recibir más información, escríbanos a <a class="inline" href="mailto:contacto@unvish.uy">contacto@unvish.uy</a>.</p>
+      <h2>Vea a Unvish analizar una conversación <span class="hl">en tiempo real.</span></h2>
+      <p class="lead"><strong>Unvish Guard</strong> es una aplicación de demostración que permite experimentar las capacidades de nuestra tecnología durante una llamada.</p>
       <a class="btn dark" href="mailto:contacto@unvish.uy?subject=Solicitud%20de%20demo%20de%20Unvish%20Guard">Solicitar la demo</a>
+      <p class="fine">Unvish Guard es un entorno demostrativo y no constituye un producto comercial de protección al consumidor.</p>
     </div>
     <figure class="try-demo">
       <div class="phone" role="img" aria-label="Simulación ilustrativa: una llamada de número desconocido y Unvish Guard marcando el riesgo hasta emitir una alerta">
@@ -345,8 +400,8 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
       <article class="person"><h3>Sebastián Vilardo</h3><p>Software Engineer</p><a class="in" href="#" aria-label="LinkedIn de Sebastián Vilardo" title="LinkedIn de Sebastián Vilardo" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
       <article class="person"><h3>Yéssica Figueroa</h3><p>Delivery &amp; Analysis</p><a class="in" href="#" aria-label="LinkedIn de Yéssica Figueroa" title="LinkedIn de Yéssica Figueroa" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
     </div>
-    <h3 class="sub">Advisors Board</h3>
-    <p class="sub-lead">Contamos con el acompañamiento de especialistas en derecho, aprendizaje automático y marketing, que orientan cada decisión del proyecto.</p>
+    <h3 class="sub">Consejo asesor</h3>
+    <p class="sub-lead">Contamos con el acompañamiento de especialistas que orientan cada decisión del proyecto.</p>
     <div class="team">
       <article class="person"><h3>Nicolás Dubcovsky</h3><p>Asesoría Legal</p><a class="in" href="#" aria-label="LinkedIn de Nicolás Dubcovsky" title="LinkedIn de Nicolás Dubcovsky" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
       <article class="person"><h3>Lucas González Petti</h3><p>Machine Learning Engineer</p><a class="in" href="#" aria-label="LinkedIn de Lucas González Petti" title="LinkedIn de Lucas González Petti" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
@@ -358,12 +413,12 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
 <section class="cta" id="contacto">
   <div class="wrap">
     <div class="cta-box on-dark">
-      <h2>Coordinemos una <span class="hl">reunión.</span></h2>
-      <p class="lead">Si trabaja en un operador de telecomunicaciones, en un banco o en un fondo de inversión, o conoce el problema de cerca, escríbanos o agende una reunión.</p>
+      <h2>Explore lo que <span class="hl">la inteligencia conversacional</span> puede hacer por su organización.</h2>
+      <p class="lead">Conversemos sobre su infraestructura, sus desafíos y las posibilidades de integrar Unvish.</p>
       <div class="ctas">
         <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noopener noreferrer">Agendar en Calendly</a>
-        <a class="icon-btn" href="mailto:contacto@unvish.uy" aria-label="Escríbanos a contacto@unvish.uy" title="contacto@unvish.uy"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
-        <a class="icon-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Unvish" title="LinkedIn de Unvish"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a>
+        <a class="icon-btn" href="mailto:contacto@unvish.uy" aria-label="Escríbanos a contacto@unvish.uy" title="contacto@unvish.uy"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="lbl">contacto@unvish.uy</span></a>
+        <a class="icon-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Unvish" title="LinkedIn de Unvish"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg><span class="lbl">LinkedIn</span></a>
       </div>
     </div>
   </div>
