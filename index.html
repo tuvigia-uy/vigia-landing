@@ -53,7 +53,18 @@ h2 { font-size: clamp(32px, 4.6vw, 52px); max-width: 760px; margin-bottom: 22px;
 /* Nav */
 nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(243,245,247,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 .nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-in .logo { display: flex; align-items: center; border: 1px solid transparent; border-radius: 999px; padding: 4px 0; }
 .nav-in .logo img { height: 38px; width: auto; display: block; }
+.up-label { max-width: 0; margin-left: 0; opacity: 0; overflow: hidden; white-space: nowrap; font-size: 13px; font-weight: 600; color: var(--navy); }
+nav.is-up .logo { border-color: var(--line); background: #fff; padding: 4px 16px 4px 12px; cursor: pointer; }
+nav.is-up .logo:hover { border-color: var(--navy); }
+nav.is-up .logo img { height: 28px; }
+nav.is-up .up-label { max-width: 120px; margin-left: 10px; opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .nav-in .logo { transition: padding .45s ease, background-color .45s ease, border-color .3s ease; }
+  .nav-in .logo img { transition: height .45s ease; }
+  .up-label { transition: max-width .45s ease, margin-left .45s ease, opacity .35s ease .1s; }
+}
 .links { display: flex; gap: 34px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
 .links a:hover { color: var(--navy); }
 
@@ -130,14 +141,15 @@ nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; background: rgba(24
 /* Prueba: Unvish Guard */
 .try { background: #fff; }
 .try-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 72px; align-items: center; }
-.try-logo { height: 44px; width: auto; display: block; margin-bottom: 20px; }
-.badge { display: inline-block; margin-bottom: 24px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-ink); }
+.try-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+.try-logo { height: 44px; width: auto; display: block; }
+.badge { display: inline-block; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-ink); }
 .try-copy .lead { margin-bottom: 16px; max-width: 560px; }
 .try-copy .lead strong { color: var(--navy); font-weight: 600; }
 .try-copy .btn { margin-top: 16px; }
-.try-copy .fine { margin-top: 22px; max-width: 560px; font-size: 13px; line-height: 1.5; color: var(--ink-2); }
 .try-demo { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.try-demo figcaption { font-size: 13px; color: var(--ink-2); }
+.try-notes { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); display: grid; gap: 6px; }
+.try-notes p { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
 .phone { width: 286px; height: 580px; padding: 11px; border-radius: 46px; background: #0b1320; box-shadow: 0 30px 70px rgba(16,28,44,.28), inset 0 0 0 2px #22344d; position: relative; }
 .phone::before { content: ""; position: absolute; top: 20px; left: 50%; width: 84px; height: 22px; margin-left: -42px; border-radius: 12px; background: #000; z-index: 5; }
 .ph-screen { position: relative; width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: linear-gradient(180deg, #172A44, #0B1626); color: var(--paper); }
@@ -244,8 +256,11 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   .cta .icon-btn .lbl { display: inline; }
       .foot { grid-template-columns: 1fr 1fr; }
   .foot > :first-child { grid-column: 1 / -1; }
-  .hacker-img { width: 100%; opacity: .45; }
-  .hero::after { background: linear-gradient(90deg, rgba(16,28,44,.88), rgba(16,28,44,.45)); }
+  .hero { flex-direction: column; align-items: stretch; justify-content: flex-start; min-height: auto; padding-bottom: 0; }
+  .hero .wrap { order: 1; }
+  .hacker-img { order: 2; position: relative; right: auto; top: auto; width: 100%; height: 340px; margin-top: 36px; object-position: 50% 18%; opacity: 1;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%); mask-image: linear-gradient(180deg, transparent 0%, #000 38%); }
+  .hero::after { background: linear-gradient(0deg, #101C2C, transparent 22%); }
 }
 </style>
 </head>
@@ -253,7 +268,7 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
 
 <nav>
   <div class="wrap nav-in">
-    <a class="logo" href="#"><img src="img/Isotipo-web.svg" alt="Unvish"></a>
+    <a class="logo" href="#" aria-label="Unvish"><img src="img/Isotipo-web.svg" alt=""><span class="up-label">Volver arriba</span></a>
     <div class="links"><a href="#solucion">La solución</a><a href="#prueba">Unvish Guard</a><a href="#nosotros">Nosotros</a></div>
     <a class="btn dark" href="#contacto">Contacto</a>
   </div>
@@ -264,8 +279,8 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   <div class="scanbar" aria-hidden="true"></div>
   <div class="wrap">
     <h1>El fraude telefónico se detecta en la <span class="hl">conversación.</span></h1>
-    <p>Las estafas ya no se combaten solo con listas de números. Los criminales siguen guiones cada vez más convincentes, suplantan identidades y generan millones de dólares de perjuicio económico cada año.</p>
-    <a class="btn primary" href="#solucion">Ver cómo funciona</a>
+    <p>El vishing ya no se combate solo con listas de números: los criminales siguen guiones cada vez más convincentes, suplantan identidades y generan millones de dólares de perjuicio económico cada año.</p>
+    <a class="btn primary" href="#solucion">Conozca cómo trabajamos</a>
   </div>
 </header>
 
@@ -273,9 +288,9 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   <div class="wrap">
     <div class="kicker">Qué es Unvish</div>
     <div class="about">
-      <p>Unvish es una empresa uruguaya de tecnología especializada en la detección de fraude e ingeniería social en comunicaciones (vishing).</p>
-      <p>Nuestros modelos permiten analizar el contenido de una conversación, identificar señales asociadas a posibles intentos de fraude y generar una evaluación de riesgo estructurada.</p>
-      <p>Trabajamos con operadores de telecomunicaciones y organizaciones que buscan incorporar capacidades avanzadas de detección sin tener que desarrollar sus propios motores de inteligencia antifraude.</p>
+      <p>Somos una empresa uruguaya especializada en el desarrollo de software para la detección de fraude e ingeniería social en comunicaciones.</p>
+      <p>Nuestros modelos permiten analizar el contenido de una conversación, identificar señales asociadas a posibles amenazas y generar una evaluación de riesgo estructurada.</p>
+      <p>Trabajamos con operadores y organizaciones que buscan innovar sin asumir los costos y la complejidad de soluciones propias.</p>
     </div>
   </div>
 </section>
@@ -285,8 +300,8 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
     <div class="kicker">NUESTRO DIFERENCIAL</div>
     <h2>Tecnología pensada <span class="hl">para la región.</span></h2>
     <div class="pillars">
-      <article><h3>Desarrollo propio</h3><p>Modelos, clasificación y motor de análisis desarrollados por nuestro equipo, con evolución propia.</p></article>
-      <article><h3>Lenguaje y modalidades locales</h3><p>Atención a las particularidades lingüísticas y modalidades de fraude latinoamericanas.</p></article>
+      <article><h3>Desarrollo in-house</h3><p>Modelos, clasificación y motor de análisis desarrollados por nuestro equipo, con evolución propia.</p></article>
+      <article><h3>Lenguaje y modalidades locales</h3><p>Atención a las particularidades lingüísticas y modalidades de fraude locales más recientes.</p></article>
     </div>
   </div>
 </section>
@@ -295,7 +310,7 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   <div class="wrap">
     <div class="kicker">La solución</div>
     <h2>Una lectura clara de <span class="hl">cada conversación.</span></h2>
-    <p class="lead">Unvish evalúa la intención y el contexto de cada conversación, más allá de palabras o frases puntuales.</p>
+    <p class="lead">Evaluamos la intención y el contexto de cada conversación, más allá de palabras o frases puntuales.</p>
     <div class="sol">
       <div class="tabs" role="tablist" id="featTabs" aria-label="Qué entrega la solución">
         <button role="tab" aria-selected="true">Nivel de riesgo</button>
@@ -306,7 +321,7 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
       <div class="feats" id="featPanels">
         <article class="feat" role="tabpanel"><p>Una puntuación que indica qué tan probable es que la conversación sea un intento de estafa.</p></article>
         <article class="feat" role="tabpanel" hidden><p>La modalidad más probable, por ejemplo suplantación de una entidad bancaria.</p></article>
-        <article class="feat" role="tabpanel" hidden><p>Las razones concretas detrás de cada alerta, para revisarlas y auditarlas.</p></article>
+        <article class="feat" role="tabpanel" hidden><p>Las razones concretas detrás de cada alerta, para revisión y auditoría.</p></article>
         <article class="feat" role="tabpanel" hidden><p>Qué tan firme es la evaluación, para calibrar la respuesta.</p></article>
       </div>
     </div>
@@ -319,13 +334,13 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
     <h2>Inteligencia que se adapta a <span class="hl">su infraestructura.</span></h2>
     <ol class="flow">
       <li><h3>Comunicación</h3><p>Una llamada o conversación gestionada por la organización.</p></li>
-      <li><h3>Captura y transcripción</h3><p>La conversación se convierte en texto, con la infraestructura del cliente o con un proveedor, según la arquitectura de la integración.</p></li>
-      <li class="us"><h3>Unvish AI</h3><p>Análisis contextual y evaluación del riesgo.</p></li>
+      <li><h3>Preparación de la conversación</h3><p>El audio se convierte en un formato que los modelos pueden analizar. La organización puede resolverlo con sus propios medios o apoyarse en Unvish para esta etapa.</p></li>
+      <li class="us"><h3>Unvish AI</h3><p>Nuestros modelos analizan el contexto de la conversación y evalúan el riesgo.</p></li>
       <li class="us"><h3>API de resultados</h3><p>Riesgo, clasificación e indicadores detectados.</p></li>
       <li><h3>Sistemas del cliente</h3><p>La organización define las acciones según sus políticas: alertar al cliente, derivar a un analista, registrar el caso o bloquear.</p></li>
     </ol>
     <div class="code integ-code">
-      <div class="code-bar"><i></i><i></i><i></i><span>response.json</span><small>API de resultados · Ejemplo ilustrativo</small></div>
+      <div class="code-bar"><i></i><i></i><i></i><span>response.json</span><small>Ejemplo ilustrativo</small></div>
 <pre><code>{
   <b class="k">"conversation_id"</b>: <b class="s">"c_7f3a9e"</b>,
   <b class="k">"risk"</b>: {
@@ -349,12 +364,10 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
 <section id="prueba" class="try">
   <div class="wrap try-grid">
     <div class="try-copy">
-      <img class="try-logo" src="img/unvishGuard-web.svg" alt="Unvish Guard">
-      <span class="badge">DEMO</span>
+      <div class="try-brand"><img class="try-logo" src="img/unvishGuard-web.svg" alt="Unvish Guard"><span class="badge">DEMO</span></div>
       <h2>Vea a Unvish analizar una conversación <span class="hl">en tiempo real.</span></h2>
-      <p class="lead"><strong>Unvish Guard</strong> es una aplicación de demostración que permite experimentar las capacidades de nuestra tecnología durante una llamada.</p>
-      <a class="btn dark" href="mailto:contacto@unvish.uy?subject=Solicitud%20de%20demo%20de%20Unvish%20Guard">Solicitar la demo</a>
-      <p class="fine">Unvish Guard es un entorno demostrativo y no constituye un producto comercial de protección al consumidor.</p>
+      <p class="lead"><strong>Unvish Guard</strong> es una aplicación móvil que permite experimentar las capacidades de nuestra tecnología durante una llamada.</p>
+      <a class="btn dark" href="mailto:contacto@unvish.uy?subject=Solicitud%20de%20demo%20de%20Unvish%20Guard">Solicitar ahora</a>
     </div>
     <figure class="try-demo">
       <div class="phone" role="img" aria-label="Simulación ilustrativa: una llamada de número desconocido y Unvish Guard marcando el riesgo hasta emitir una alerta">
@@ -384,28 +397,33 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
           </div>
         </div>
       </div>
-      <figcaption>Simulación ilustrativa. No muestra resultados medidos.</figcaption>
     </figure>
+  </div>
+  <div class="wrap">
+    <div class="try-notes">
+      <p>Unvish Guard es un entorno demostrativo y no constituye un producto comercial de protección al consumidor.</p>
+      <p>Simulación ilustrativa. No muestra resultados medidos.</p>
+    </div>
   </div>
 </section>
 
 <section id="nosotros">
   <div class="wrap">
     <div class="kicker">Sobre nosotros</div>
-    <h2>Un equipo que conoce el <span class="hl">problema de cerca.</span></h2>
+    <h2>Capacidad técnica para desarrollar <span class="hl">soluciones inteligentes.</span></h2>
     <p class="lead">Somos un equipo multidisciplinario con experiencia en ingeniería de software, prevención de fraude y gestión de proyectos.</p>
     <div class="team">
-      <article class="person"><h3>Daniel Martínez</h3><p>CEO</p><a class="in" href="#" aria-label="LinkedIn de Daniel Martínez" title="LinkedIn de Daniel Martínez" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
-      <article class="person"><h3>Mauricio Calcagno</h3><p>CTO</p><a class="in" href="#" aria-label="LinkedIn de Mauricio Calcagno" title="LinkedIn de Mauricio Calcagno" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
-      <article class="person"><h3>Sebastián Vilardo</h3><p>Software Engineer</p><a class="in" href="#" aria-label="LinkedIn de Sebastián Vilardo" title="LinkedIn de Sebastián Vilardo" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
-      <article class="person"><h3>Yéssica Figueroa</h3><p>Delivery &amp; Analysis</p><a class="in" href="#" aria-label="LinkedIn de Yéssica Figueroa" title="LinkedIn de Yéssica Figueroa" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Daniel Martínez</h3><p>CEO</p><a class="in" href="https://www.linkedin.com/in/danielmartinezuy/" aria-label="LinkedIn de Daniel Martínez" title="LinkedIn de Daniel Martínez" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Mauricio Calcagno</h3><p>CTO</p><a class="in" href="https://www.linkedin.com/in/mauricio-calcagno-b5996549/" aria-label="LinkedIn de Mauricio Calcagno" title="LinkedIn de Mauricio Calcagno" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Sebastián Vilardo</h3><p>Software Engineer</p><a class="in" href="https://www.linkedin.com/in/sebasti%C3%A1n-vilardo-4a2672149/" aria-label="LinkedIn de Sebastián Vilardo" title="LinkedIn de Sebastián Vilardo" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Yéssica Figueroa</h3><p>Delivery &amp; Analysis</p></article>
     </div>
     <h3 class="sub">Consejo asesor</h3>
     <p class="sub-lead">Contamos con el acompañamiento de especialistas que orientan cada decisión del proyecto.</p>
     <div class="team">
-      <article class="person"><h3>Nicolás Dubcovsky</h3><p>Asesoría Legal</p><a class="in" href="#" aria-label="LinkedIn de Nicolás Dubcovsky" title="LinkedIn de Nicolás Dubcovsky" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
-      <article class="person"><h3>Lucas González Petti</h3><p>Machine Learning Engineer</p><a class="in" href="#" aria-label="LinkedIn de Lucas González Petti" title="LinkedIn de Lucas González Petti" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
-      <article class="person"><h3>Natalia De Vita</h3><p>Asesoría en Marketing</p><a class="in" href="#" aria-label="LinkedIn de Natalia De Vita" title="LinkedIn de Natalia De Vita" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Nicolás Dubcovsky</h3><p>Asesoría Legal</p><a class="in" href="https://www.linkedin.com/in/nicolas-dubcovsky/" aria-label="LinkedIn de Nicolás Dubcovsky" title="LinkedIn de Nicolás Dubcovsky" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Lucas González Petti</h3><p>Machine Learning Engineer</p><a class="in" href="https://www.linkedin.com/in/lucasgonzalezpetti/" aria-label="LinkedIn de Lucas González Petti" title="LinkedIn de Lucas González Petti" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
+      <article class="person"><h3>Natalia De Vita</h3><p>Asesoría en Marketing</p><a class="in" href="https://www.linkedin.com/in/natalia-de-vita/" aria-label="LinkedIn de Natalia De Vita" title="LinkedIn de Natalia De Vita" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg></a></article>
     </div>
   </div>
 </section>
@@ -414,9 +432,9 @@ footer { background: #fff; border-top: 1px solid var(--line); padding-block: 64p
   <div class="wrap">
     <div class="cta-box on-dark">
       <h2>Explore lo que <span class="hl">la inteligencia conversacional</span> puede hacer por su organización.</h2>
-      <p class="lead">Conversemos sobre su infraestructura, sus desafíos y las posibilidades de integrar Unvish.</p>
+      <p class="lead">Evaluemos juntos las posibilidades de incorporar Unvish a sus sistemas.</p>
       <div class="ctas">
-        <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noopener noreferrer">Agendar en Calendly</a>
+        <a class="btn primary" href="https://calendly.com/" target="_blank" rel="noopener noreferrer">Agendar una reunión</a>
         <a class="icon-btn" href="mailto:contacto@unvish.uy" aria-label="Escríbanos a contacto@unvish.uy" title="contacto@unvish.uy"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="lbl">contacto@unvish.uy</span></a>
         <a class="icon-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Unvish" title="LinkedIn de Unvish"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.8 3.7-1.8 3.9 0 4.6 2.5 4.6 5.8v5.5h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6v5h-4v-11z"/></svg><span class="lbl">LinkedIn</span></a>
       </div>
@@ -457,6 +475,22 @@ tabs.forEach((t, i) => {
   });
 });
 show(0);
+
+// Al llegar al logo del footer, el isotipo del menú pasa a ser el botón "Volver arriba"
+const navEl = document.querySelector('nav');
+const navLogo = navEl.querySelector('.logo');
+const footLogo = document.querySelector('.foot .logo img');
+if (footLogo && 'IntersectionObserver' in window) {
+  new IntersectionObserver(([e]) => {
+    navEl.classList.toggle('is-up', e.isIntersecting);
+    navLogo.setAttribute('aria-label', e.isIntersecting ? 'Volver arriba' : 'Unvish');
+  }, { threshold: .3 }).observe(footLogo);
+}
+navLogo.addEventListener('click', e => {
+  e.preventDefault();
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
+});
 </script>
 </body>
 </html>
